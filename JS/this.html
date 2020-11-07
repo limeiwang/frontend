@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var obj = {
+        //     x: 10,
+        //     method: function(){
+        //         console.log(this);
+        //     }
+        // }
+
+        // var fn = obj.method;
+        // fn();
+        // obj.method();
+        //
+        var obj1 = {
+            ces: "跑车",
+            mase: function(){
+                alert("开着我的"+this.ces+"去兜风")
+            }
+        }
+        var obj2 = {
+            ces: "拖拉机",
+            mase: function(){
+                alert("开着我的"+this.ces+"去兜风")
+            }
+        }
+        obj2.mase.call(this.obj1)
+    </script>
+</body>
+</html>

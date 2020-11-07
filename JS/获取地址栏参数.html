@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function fn(){
+        var par=location.search.slice(1);
+        var yu=par.split("&");
+        var obj={};
+        yu.foreach(function(a,b,c){
+            var x = a.split("=");
+            obj[x[0]]==x[1];
+        })
+        return obj;
+    }
+    console.log(fn())
+
+
+
+        // function getType(Name){
+        //     var par = location.search.slice(1);
+        //     var reg = new RegExp("(^|&)" + Name +"=([^&]+)");
+        //     return reg.exec(par)[2];
+        // }
+        // var rs = getType("z");
+        // console.log(rs);
+    </script>
+</body>
+</html>

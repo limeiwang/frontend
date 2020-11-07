@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="ajax.js"></script>
+    <script>
+        ajax({
+            url:"/getPic"+location.search,
+            success: function (data){
+                if(Object.keys(data).length === 0){
+                    document.body.innerHTML = '很抱歉！您输入的大小区间不正确'
+                }else{
+                    for(var i in data){
+                        var img = new Image();
+                        img.src = data[i].path;
+                        var p = document.createElement('p');
+                        p.innerText = '图片大小为：' + data[i].size + 'kb,时间为：' + data[i].ctime;
+                        document.body.appendChild(img);
+                        document.body.appendChild(p);
+                        var date = new Date(data[i].ctime);
+                        console.log(date.toLocaleDateString());
+                        console.log(date.toLocaleTimeString());
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

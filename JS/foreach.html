@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var arr = ["a1","21","c"];
+    var newArr = [];
+    arr.forEach(function(a1,a2,a3){
+        if(a1.indexOf("1")>-1){
+            newArr.push(a1.replace("1",""));
+        }
+    });
+    console.log(newArr)
+    </script>
+</body>
+</html>

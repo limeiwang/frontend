@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    请输入账号：<input type="text">
+    请输入密码：<input type="password">
+    <input type="button" value="注册">
+    <script src="formatdata.js"></script>
+    <script src='ajax.js'></script>
+    <script>
+        var user = document.querySelectorAll("input")[0];
+        var pwd = document.querySelectorAll("input")[1];
+        var btn = document.querySelectorAll("input")[2];
+
+        btn.onclick = function () {
+            ajax({
+                url:`/register?name=${user.value}&pwd=${pwd.value}`,
+                success:function(data){
+                    alert(data.msg);
+                    if(data.code === 0){
+                        location.href = '/register.html'
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // function obj(){}
+        // var a = obj.prototype;
+        // console.log(a);
+        // var b = obj.constructor;
+        // console.log(b);
+
+        // function Animal(c,t){
+        //     this.from = c;
+        //     this.name = t;
+        // };
+        // Animal.prototype.fn = function(){
+        //     alert("来自"+this.from+"的"+this.name);
+        // }
+
+        // var xm = new Animal("中国","猫");
+        // var ds = new Animal("德国","机油");
+        // xm.fn();
+        // ds.fn();
+        // console.log(xm.fn === ds.fn);
+
+        function Class(c,t){
+            this.name = c;
+            this.student = t;
+        };
+        Class.prototype.sayName = function(){
+            alert(this.name+"今年"+this.student+"了");
+        }
+
+        var xm = new Class("zs","18");
+        //var ds = new Animal("德国","机油");
+        xm.sayName();
+        ds.sayName();
+
+        //组合式联系
+        //构造函数名：Class
+        //构造函数里写两个属性：班级名称：name
+        //                    学生：student
+        //学生的格式为：[{name:"zs",age:18},{name:"ls",age:19}]
+
+
+        //在Class原型上添加一个方法：sayName     调用这个方法，随机弹一个学生的姓名和年龄   例：zs今年18了;
+
+    </script>
+</body>
+</html>

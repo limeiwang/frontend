@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [[1,2],[3,4],[5,6]];
+        function isAllArray(arr){
+            return arr.every(function(val){
+                return Object.prototype.toString.call(val) ==="[object Array]";
+                //return val instanceof Array;
+            });
+        }
+        console.log(isAllArray(arr));
+    </script>
+</body>
+</html>

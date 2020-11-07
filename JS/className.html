@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <ul id="news">
+        <li class="box">1</li>
+        <li class="box boox1">2</li>
+        <li class="boo box">3</li>
+        <li class="demo">4</li>
+    </ul>
+    <script>
+        var news = document.getElementById("news");
+        function getByclass(){
+            var cName = arguments[0];
+            var par = arguments[1] || document;
+            var nodes = par.getElementsByTagName("*");
+            var reg = new RegExp("\\b"+ cName +"\\b");
+            var result = [];
+            for(var i=0;i < nodes.length;i++){
+                if(reg.test(nodes[i].className)){
+                    result.push(nodes[i]);
+                }
+            }
+            return result;
+        }
+        console.log(getByclass("box",news)[0].style.background = "red")
+    </script>
+</body>
+</html>

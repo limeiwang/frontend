@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var obj = {};
+        // var obj2 = new RegExp();
+        // obj.name = "lili";
+        // obj.f = function(){
+        //     alert(this.name);
+        // };
+
+
+        // obj2["age"] = 18;
+        // obj2["show"] = function(){
+        //     alert(this.name);
+        // }
+        // console.log(obj.__proto__);
+
+
+        var Fn = function(name,age){
+            this.name = name;
+            this.age = age;
+        }
+        Fn.prototype.say = function(){
+            alert("姓名:"+this.name+"年龄:"+this.age)
+        }
+        var fn = new Fn("lili",20);
+        console.log(fn.__proto__)
+        console.log(Fn.prototype)
+        console.log(Fn.prototype==fn.__proto__)
+    </script>
+</body>
+</html>

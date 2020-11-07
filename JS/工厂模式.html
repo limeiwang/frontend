@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Animal(country,type){
+            this.from = country;
+            this.name = type;
+            this.method = function(){
+                alert("来自"+this.from+"的"+this.name);
+            }
+        }
+        var zg = new Animal("中国四川","大猕猴");
+        zg.method()
+    </script>
+</body>
+</html>

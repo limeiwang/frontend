@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Fn(){
+            this.name = "网站";
+        }
+        Fn.prototype.name = "工程";
+        var Fn = new Fn();
+        //console.log(Fn.name)
+        console.log(Fn.hasOwnProperty("name"));
+        if(Fn.hasOwnProperty("name")){
+            alert("yes");
+        }else{
+            alert("no");
+        }
+    </script>
+</body>
+</html>

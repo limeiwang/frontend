@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <a href="#" onclick="fn(this)">点击</a>
+    <br>
+    <span>点</span>
+    <br>
+    <div id="box">
+        sddsbbsdbs
+    </div>
+    <script>
+        var box = document.getElementById("box");
+        box.addEventListener("click",function(){alert("a")})
+
+        var span = document.getElementsByTagName("span")[0];
+        span.addEventListener("click",function(){
+            fn()
+        })
+        function fn(){
+            alert("A")
+        }
+
+    </script>
+</body>
+</html>

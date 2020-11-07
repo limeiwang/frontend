@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        Array.prototype.ForEach = function(fn){
+            var sum = [];
+            for(var i=0;i<this.length;i++){
+                if(fn(this[i],i,this)){
+                    sum.push(this[i])
+                }
+            }
+            return sum;
+        }
+        var arr = ["a","b",1,2,4,5,6,7]
+        var wer = arr.ForEach(function(v,i,a){
+            return !isNaN(v);
+        })
+        console.log(wer);
+    </script>
+</body>
+</html>

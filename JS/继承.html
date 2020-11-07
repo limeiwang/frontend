@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function fn(c,h){
+            this.car = c;
+            this.house = h;
+        }
+        fn.prototype.obj = function(){
+            alert("工作");
+        }
+
+        subtype.prototype = new fn();
+        function subtype(){
+            fn.apply(this,arguments);
+        }
+        var n = new subtype("法拉利","洋房");
+        console.log(n.obj())
+    </script>
+</body>
+</html>

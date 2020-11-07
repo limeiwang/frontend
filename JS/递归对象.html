@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <!-- <script>
+        var obj = {
+            id: 1,
+            name: "name",
+            child: {
+                id: 2,
+                name: "name",
+                child: {
+                    id: 3,
+                    name: "name",
+                    child: {
+                        id: 4,
+                        name: "name",
+                        child: {}
+                    }
+                }
+            }
+        }
+
+        function rChild(obj,id){
+            if(obj.id === id){
+                delete obj.child;
+            }else{
+                arguments.callee(obj.child,id);
+            }
+            return obj;
+        }
+        console.log(rChild(obj,2))
+    </script> -->
+    <script>
+         var v1 = 'global';
+        var f1 = function() {
+            console.log(v1);
+        }
+        f1(); // global     global
+        var f2 = function() {
+            var v1 = 'local';
+            f1();
+        };
+        f2();
+        //函数的嵌套关系是定义时决定的，而非调用时决定的
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <div class="box">123</div>
+    <ul id="list">
+        <li class="box1 ccc">aaaaa</li>
+        <li>aaaaa</li>
+        <li class="box ccc">aaaaa</li>
+        <li class="box">aaaaa</li>
+    </ul>
+    <script>
+        var list = document.getElementById("list")
+        var arr = [];
+        function dg(Name){
+            var par = arguments[1] || document;
+            if(par.children.length > 0){
+                for(var i=0;i < par.children.length;i++){
+                    var reg = RegExp("\\b"+Name+"\\b");
+                    if(reg.test(par.children[i].className)){
+                        arr.push(par.children[i]);
+                    }
+                    arguments.callee(Name,par.children[i])
+                }
+            }
+            return arr;
+        }
+        console.log(dg("box",list));
+    </script>
+</body>
+</html>

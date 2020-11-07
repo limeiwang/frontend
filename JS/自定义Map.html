@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        Array.prototype.Map = function(fn){
+            var temp = [];
+            for(var i=0;i<this.length;i++){
+                temp.push(fn(this[i],i,this));
+            }
+            return temp;
+        }
+        var arr = ["a","b","c"];
+        var flower =["张三","李四","梅花","荷花"];
+        var aRs = arr.Map(function(v,i,a){
+            return 3;
+        });
+        var bRs = arr.Map(function(v,i,a){
+            return 9;
+        });
+        console.log(aRs);
+        console.log(bRs);
+    </script>
+</body>
+</html>

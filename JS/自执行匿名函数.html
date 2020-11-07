@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <ul id="list">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <script>
+        var list = document.getElementById("list");
+        var aLi = list.getElementsByTagName("li");
+        for (var i = 0; i < aLi.length; i++) {
+            (function(n){
+                aLi[n].onclick = function(){
+                    console.log(n);
+                }
+            })(i)
+        };
+    </script>
+</body>
+</html>

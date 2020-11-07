@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [1,2,3,4,5,6,7,8,9,10];
+        var str = arr.filter(function(ele){
+            return ele % 2 ===0;
+        });
+        console.log(str);
+
+
+        var arrs = [1,2,4,1,2,4,5,6];
+        var New = [];
+        arrs.filter(function(ele){
+            if(New.indexOf(ele) === -1){
+                New.push(ele);
+            }
+        })
+        console.log(New.sort());
+
+
+        Array.prototype.ForEach = function(fn){
+            for(var i = 0;i<this.length;i++){
+                fn(this[i],i,this);
+                }
+            }
+            var a = ["a","b","c"];
+            var b = ["张三","李四","小周","小王"];
+            a.ForEach(function(v,i,a){
+                console.log(v,i,a);
+            });
+            b.ForEach(function(v,i,a){
+                console.log(v,i,a)
+            })
+    </script>
+</body>
+</html>

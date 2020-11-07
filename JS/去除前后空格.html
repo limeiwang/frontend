@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //去除前空格
+        function arr(str){
+            return str.replace(/^\s+/,"");
+        }
+        console.log(arr("   ccc"));
+        //去除后空格
+        function arr1(str){
+            return str.replace(/\s+$/,"");
+        }
+        console.log(arr1("ccc   "));
+        //去除前后空格
+        function arr2(str){
+            return str.replace(/^\s+|\s+$/g,"");
+        }
+        console.log(arr2("   ccccc  "));
+    </script>
+</body>
+</html>
