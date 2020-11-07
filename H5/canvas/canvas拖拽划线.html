@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .btn.active {
+            background: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <p><input type="color" class="color"><input type="range" class="range" min="1" max="10" value="1"><button class="btn">橡皮擦</button><button class="clear">清空</button><button class="save">保存</button></p>
+    <canvas class="can" height="500" style="border:1px solid #000;"></canvas>
+</body>
+<script>
+    var can = document.querySelector(".can");
+    var ctx = can.getContext("2d");
+    var osl = can.offsetLeft,
+        ost = can.offsetTop;
+    var color = document.querySelector(".color");
+    var range = document.querySelector(".range");
+    var btn = document.querySelector(".btn");
+    var clear = document.querySelector(".clear");
+    var save = document.querySelector(".save");
+    var w = can.width = window.innerWidth - 2;
+    color.addEventListener("change", function() {
+        var val = this.value;
+        ctx.strokeStyle = val;
+    });
+    range.addEventListener("change", function() {
+        var val = this.value;
+        ctx.lineWidth = val;
+    });
+    btn.addEventListener("click", function() {
+        btn.classList.toggle("active");
+        if (btn.classList.contains("active")) {
+            ctx.globalCompositeOperation = "destination-out";
+        } else {
+            ctx.globalCompositeOperation = "source-over";
+        }
+    });
+    clear.addEventListener("click", function() {
+        ctx.clearRect(0, 0, w, 500)
+    });
+    save.addEventListener("click", function() {
+        var result = can.toDataURL();
+        var img = new Image();
+        img.src = result;
+        document.body.appendChild(img)
+    });
+    can.addEventListener("touchstart", function(e) {
+        var startx = e.touches[0].clientX - osl;
+        var starty = e.touches[0].clientY - ost;
+        ctx.beginPath();
+        ctx.moveTo(startx, starty);
+    });
+    can.addEventListener("touchmove", function(e) {
+        var movex = e.touches[0].clientX - osl;
+        var movey = e.touches[0].clientY - ost;
+        ctx.lineTo(movex, movey);
+        ctx.stroke();
+    });
+</script>
+
+</html>

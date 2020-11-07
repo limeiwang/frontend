@@ -1,0 +1,134 @@
+@charset "UTF-8";
+* {
+  margin: 0px;
+  padding: 0px;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-size: .28rem;
+  font-weight: 400;
+  font-style: normal;
+  list-style: none;
+  font-family: "微软雅黑";
+  text-size-adjust: 100%;
+}
+
+html,
+body,
+.wrap {
+  width: 100%;
+  height: 100%;
+}
+
+html {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+img,
+div,
+body,
+html,
+ul,
+li,
+a {
+  -webkit-touch-callout: none;
+}
+
+input,
+button {
+  outline: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #999;
+}
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-size: 0.32rem;
+  position: relative;
+}
+
+header {
+  width: 100%;
+  height: .8rem;
+  display: flex;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  align-items: center;
+  -webkit-align-items: center;
+  padding: 0 .2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-top: .2rem;
+  z-index: 99;
+}
+
+header a {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  display: inline-block;
+  background: rgba(2, 2, 2, 0.3);
+  text-align: center;
+  line-height: .8rem;
+  color: #fff;
+}
+
+section {
+  flex: 1;
+  overflow: hidden;
+}
+
+.ban {
+  height: 4.70rem;
+  background-image: url(http://store.is.autonavi.com/showpic/028e9c40325d6f9c7ad9bf0567321e47);
+  background-size: cover;
+  position: relative;
+}
+
+.ban .canvas {
+  width: 1.4rem;
+  height: 1.4rem;
+  position: absolute;
+  right: 0;
+  bottom: 1.14rem;
+  padding: .08rem;
+}
+
+.ban .header-cont {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1.14rem;
+  background: #fff;
+  opacity: .96;
+  padding: 13px 15px 14px;
+  border: 1px solid #F8F8F8;
+}
+
+.ban .header-cont h2 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ban .header-cont h2 b {
+  font-size: .38rem;
+  font-weight: 800;
+}
+
+.ban .header-cont h2 span {
+  font-size: .28rem;
+  color: #9A9A9A;
+}

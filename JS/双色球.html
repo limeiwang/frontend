@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding: 0;
+			list-style: none;
+		}
+		ul{
+			overflow: hidden;
+		}
+		li{
+			width: 80px;
+			height: 80px;
+			background: red;
+			border-radius: 50%;
+			text-align: center;
+			line-height: 80px;
+			color:#fff;
+			font-size:30px;
+			float: left;
+			margin-right: 10px;
+		}
+		li:nth-of-type(6),li:nth-of-type(7){
+			background: blue;
+		}
+	</style>
+</head>
+<body>
+
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+
+	<input type="button" value="机选一注" id="choose">
+	<input type="button" value="清空" id="empty">
+	<script>
+		var oChoose = document.getElementById("choose");
+		var oEmpty = document.getElementById("empty");
+		var aLi = document.getElementsByTagName("li");
+		var timer = null;
+
+		//添加上滚动的效果 --- setInterval();
+
+		oChoose.onclick = function(){
+			//开新的定时器之前，关闭上一个定义器
+			clearInterval(timer);
+			var time = 0;
+			timer = setInterval(function(){
+				//用来存储随机出来的数值
+				var arr = [];
+				//不确定循环次数的情况下用while
+				while(arr.length<7){//当数组中有五个值的情况下，循环结束
+					//前五次循环查找1~33
+					if(arr.length<5){
+						//反复调用random()
+						var n = random(1,33);
+						//判断数组中是否存在当前的随机值，如果不存在，添加到arr中
+						if(arr.indexOf(n)==-1){
+							arr.push(n);
+						}
+					}else{//后两次循环查找1~16
+						var m = random(1,16);
+						//去重
+						if(arr.indexOf(m,5)==-1){
+							arr.push(m);
+						}
+					}	
+				}
+				//循环放入数值
+				for(var i=0;i<aLi.length;i++){
+					aLi[i].innerHTML = arr[i];
+				}
+
+				//每隔100毫秒变化time值
+				time++;
+				//如果time的值变化到20，停止定时器
+				if(time>=20){
+					clearInterval(timer);
+				}
+			},100);
+		};
+
+		oEmpty.onclick = function(){
+			for(var i=0;i<aLi.length;i++){
+				aLi[i].innerHTML = "";
+			}
+		};
+
+		function random(min,max){
+			return Math.floor(Math.random()*(max-min+1)+min);
+		}
+
+
+		/*
+			思路：
+				1，点击机选一注抽取7个随机数
+					关闭上一个定时器
+					开启一个定时器
+						前五个随机的范围是1~33
+							插入新的随机数之前要判断数组中前五个值是否有相同的
+
+						后两个随机的范围是1~16
+							插入新的随机数之前要判断数组中后两个值是否有相同的
+
+						得到7个不同的数值，最终将7个数放入li中
+						当满足滚动时间时，停止定时器
+				2，点击清空
+		*/
+	</script>
+</body>
+</html>

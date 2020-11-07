@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+            list-style:none;
+        }
+        #box{
+            width:1000px;
+            height:400px;
+            margin:50px auto;
+            overflow:hidden;
+        }
+        li{
+            width: 60px;
+            height:400px;
+            float:left;
+        }
+        img{
+            width: 800px;
+        }
+        .show{
+            width: 800px;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var aLi = document.getElementsByTagName("li");
+            for(var i=0;i<aLi.length;i++){
+                aLi[i].onmouseover = function(){
+                    for(var j=0;j<aLi.length;j++){
+                        aLi[j].className = "";
+                    }
+                    this.className = "show";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <ul id="box">
+        <li class="show"><img src="images/1.jpg" alt=""></li>
+        <li><img src="images/2.jpg" alt=""></li>
+        <li><img src="images/3.jpg" alt=""></li>
+        <li><img src="images/4.jpg" alt=""></li>
+        <li><img src="images/5.jpg" alt=""></li>
+    </ul>
+</body>
+</html>

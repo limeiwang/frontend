@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas class="can" width="400" height="400" style="border:1px solid #000;"></canvas>
+</body>
+<script>
+    function random(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+    var arr = [];
+    var sum = 0;
+
+    for (var i = 0; i < 6; i++) {
+        var radius = random(10, 100);
+        arr.push({
+            r: radius,
+            color: "rgb(" + random(0, 255) + "," + random(0, 255) + "," + random(0, 255) + ")"
+        });
+        sum += radius;
+    }
+    var ctx = document.querySelector(".can").getContext("2d");
+    var deg = Math.PI / 180;
+    var start = 0;
+    arr.map(function(v, i) {
+        var end = start + v.r / sum * 360;
+        move(start, end, v.color);
+        start = end;
+        // ctx.strokeStyle = "#fff";
+        // ctx.stroke();
+
+    });
+    // ctx.beginPath();
+    // ctx.moveTo(200, 200);
+    // ctx.arc(200, 200, 80, 0 * deg, 360 * deg);
+    // ctx.fillStyle = "#fff";
+    // ctx.fill();
+    function move(start, end, color) {
+        var init = start;
+        var timer = setInterval(function() {
+            init++;
+            ctx.beginPath();
+            if (init > end) {
+                clearInterval(timer)
+            }
+            ctx.moveTo(200, 200);
+            ctx.arc(200, 200, 100, start * deg, init * deg);
+            ctx.fillStyle = color;
+            ctx.fill();
+        }, 1);
+    }
+</script>
+
+</html>

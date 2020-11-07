@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>李美旺</title>
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="fonts/iconfont.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        document.documentElement.style.fontSize = window.innerWidth / 750 * 100 + "px";
+    </script>
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+            <a href=""><img src="img/logo.png"></a>
+            <label>
+                <input type="text" placeholder="搜索项目或者医院">
+            </label>
+            <a href="">
+                <span>分类</span>
+                <i class="icon iconfont icon-angle-down"></i>
+            </a>
+        </header>
+        <section>
+            <div class="scroll">
+                <div class="ban swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="img/assets/banner@2x.png" alt=""></div>
+                        <div class="swiper-slide"><img src="img/assets/banner@2x.png" alt=""></div>
+                        <div class="swiper-slide"><img src="img/assets/banner@2x.png" alt=""></div>
+                    </div>
+                </div>
+                <div class="list swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <ul>
+                                <li><img src="img/assets/客源@2x.png" alt=""><span>成单奖励</span></li>
+                                <li><img src="img/assets/年度@2x.png" alt=""><span>推荐新人</span></li>
+                                <li><img src="img/assets/成单@2x.png" alt=""><span>收益滚利</span></li>
+                                <li><img src="img/assets/客源@2x.png" alt=""><span>阶梯奖励</span></li>
+                                <li><img src="img/assets/收益@2x.png" alt=""><span>异业拓客</span></li>
+                                <li><img src="img/assets/推荐@2x.png" alt=""><span>集采返现</span></li>
+                                <li><img src="img/assets/新品@2x.png" alt=""><span>新品悬赏</span></li>
+                                <li><img src="img/assets/期待@2x.png" alt=""><span>敬请期待</span></li>
+                            </ul>
+                        </div>
+                        <div class="swiper-slide">
+                            <ul>
+                                <li><img src="img/assets/客源@2x.png" alt=""><span>成单奖励</span></li>
+                                <li><img src="img/assets/年度@2x.png" alt=""><span>推荐新人</span></li>
+                                <li><img src="img/assets/成单@2x.png" alt=""><span>收益滚利</span></li>
+                                <li><img src="img/assets/客源@2x.png" alt=""><span>阶梯奖励</span></li>
+                                <li><img src="img/assets/收益@2x.png" alt=""><span>异业拓客</span></li>
+                                <li><img src="img/assets/推荐@2x.png" alt=""><span>集采返现</span></li>
+                                <li><img src="img/assets/新品@2x.png" alt=""><span>新品悬赏</span></li>
+                                <li><img src="img/assets/期待@2x.png" alt=""><span>敬请期待</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont">
+                    <h2 class="title">金牌商家</h2>
+                    <ul class="lists">
+                        <li>越美国际</li>
+                        <li>美人魅力</li>
+                        <li>越美国际</li>
+                        <li>美人魅力</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <a href="" class="act">
+                <img src="img/assets/首页@2x.png" alt="">
+                <span>首页</span>
+            </a>
+            <a href="">
+                <img src="img/assets/我的@2x.png" alt="">
+                <span>我的</span>
+            </a>
+        </footer>
+    </div>
+</body>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/swiper.min.js"></script>
+<script>
+    new Swiper(".ban", {
+        loop: true,
+        autoplay: {
+            delay: 1000
+        }
+    });
+    new Swiper(".list");
+</script>
+
+</html>

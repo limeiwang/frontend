@@ -1,0 +1,15 @@
+{
+    "result": "success",
+    "data": [
+        { "img": "pic1.png", "tit": "北京首都机场国际酒店", "time": "限时抢购", "price": "￥268", "fen": "4.3", "xing": "四星级", "car": " P", "location": "首都机场、新发展", "distance": "18.2公里" },
+        { "img": "pic1.png", "tit": "北京首都7天", "time": "限时抢购", "price": "￥268", "fen": "4.1", "xing": "四星级", "car": "# P", "location": "首都机场、新发展", "distance": "23.2公里" },
+        { "img": "pic1.png", "tit": "北京首都速8酒店", "time": "限时抢购", "price": "￥268", "fen": "3.9", "xing": "四星级", "car": " P", "location": "首都机场、新发展", "distance": "24.2公里" },
+        { "img": "pic1.png", "tit": "北京首都如家酒店", "time": "限时抢购", "price": "￥268", "fen": "2.1", "xing": "四星级", "car": "# P", "location": "首都机场、新发展", "distance": "28.2公里" },
+        { "img": "pic1.png", "tit": "北京首都如家酒店", "time": "限时抢购", "price": "￥268", "fen": "2.5", "xing": "四星级", "car": "# P", "location": "首都机场、新发展", "distance": "28.2公里" },
+        { "img": "pic1.png", "tit": "北京首都机场国际酒店", "time": "限时抢购", "price": "￥268", "fen": "3.5", "xing": "四星级", "car": " P", "location": "首都机场、新发展", "distance": "18.2公里" },
+        { "img": "pic1.png", "tit": "北京首都7天", "time": "限时抢购", "price": "￥268", "fen": "4.3", "xing": "四星级", "car": "# P", "location": "首都机场、新发展", "distance": "23.2公里" },
+        { "img": "pic1.png", "tit": "北京首都速8酒店", "time": "限时抢购", "price": "￥268", "fen": "4.3", "xing": "四星级", "car": " P", "location": "首都机场、新发展", "distance": "24.2公里" },
+        { "img": "pic1.png", "tit": "北京首都如家酒店", "time": "限时抢购", "price": "￥268", "fen": "4.3", "xing": "四星级", "car": "# P", "location": "首都机场、新发展", "distance": "28.2公里" },
+        { "img": "pic1.png", "tit": "北京首都如家酒店", "time": "限时抢购", "price": "￥268", "fen": "4.3", "xing": "四星级", "car": "# P", "location": "首都机场、新发展", "distance": "28.2公里" }
+    ]
+}

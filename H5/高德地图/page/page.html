@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../fonts/iconfont.css">
+    <link rel="stylesheet" href="css/page.css">
+    <script>
+        document.documentElement.style.fontSize = window.innerWidth / 750 * 100 + "px";
+    </script>
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+            <a href="../index.html"><i class="icon iconfont icon-chevron-thin-left"></i></a>
+            <a><i class="icon iconfont icon-shoucang2"></i></a>
+        </header>
+        <section>
+            <div class="ban">
+                <div class="canvas">
+                    <canvas class="can"></canvas>
+                </div>
+                <div class="header-cont">
+                    <h2><b class="name">北京</b><span>查看更多评论</span></h2>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+<script src="../js/jquery-3.2.1.min.js"></script>
+<script>
+    function GetRequest() {
+        var url = location.search; //获取url中"?"符后的字串 
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for (var i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+    var Request = new Object();
+
+    Request = GetRequest();
+    console.log(Request);
+
+    var can = $(".can")
+    var w = $(".canvas").width();
+    console.log(can.height)
+    can[0].width = w;
+    can[0].height = w;
+    var ctx = can[0].getContext("2d");
+    var deg = Math.PI / 180;
+    var start = -90;
+    var rodius = Request.num / 4.5 * 360;
+    var init = start;
+    console.log(rodius)
+    move();
+    ctx.translate(w / 2, w / 2);
+
+    function move() {
+        init++;
+        if (init < rodius + start) {
+            requestAnimationFrame(move);
+        }
+
+        console.log(rodius + start, init)
+        ctx.clearRect(-w / 2, -w / 2, w, w);
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.arc(0, 0, w / 2 - 3, 0, 360 * deg);
+        ctx.fillStyle = "#fff";
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(0, 0, w / 2 - 6, start * deg, init * deg);
+        ctx.lineWidth = 6;
+        ctx.strokeStyle = "#F58C00";
+        ctx.stroke();
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillStyle = "#F58C00";
+        ctx.font = "14px normal"
+        ctx.fillText(((init + 90) / (360 + 90) * 5).toFixed(1), -6, 0);
+        ctx.font = "10px normal"
+        ctx.fillText("分", 8, 0);
+    }
+
+
+    $(".name").html(Request.name);
+</script>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .tr {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background: #fff;
+            top: 0;
+            z-index: 99;
+        }
+        
+        .audio {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .an {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            width: 64px;
+            height: 64px;
+            background: url(QQ图片20180516114501.png) no-repeat;
+            background-position: right top;
+            animation: rotates 3s linear infinite;
+        }
+        
+        .bj {
+            background-position: center top;
+            animation-play-state: paused;
+        }
+        
+        @keyframes rotates {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @media only screen and (orientation:landscape) {
+            .tr {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tr">请在竖屏下观看</div>
+    <div class="audio">
+        <div class="an">
+            <audio src="bg.mp3"></audio>
+        </div>
+    </div>
+</body>
+<script>
+    var audio = document.querySelector("audio"),
+        anbtn = document.querySelector(".an");
+    document.body.addEventListener("touchstart", function() {
+        audio.play();
+    }, false);
+    anbtn.addEventListener("click", function() {
+        if (anbtn.classList.contains("bj")) {
+            this.classList.remove("bj");
+            audio.play();
+        } else {
+            this.classList.add("bj");
+            audio.pause();
+        }
+    }, false);
+</script>
+
+</html>

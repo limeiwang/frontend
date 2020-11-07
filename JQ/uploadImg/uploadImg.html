@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        li {
+            list-style: none;
+        }
+        
+        .wrap {
+            width: 600px;
+        }
+        
+        .pic {
+            border: 1px solid #ccc;
+        }
+        
+        .pic:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        
+        .pic li {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin-right: 10px;
+            background: url('img/upimg_loading.gif') no-repeat;
+            float: left;
+            overflow: hidden;
+        }
+        
+        .pic li.add {
+            background: url('img/upimg.png') no-repeat;
+        }
+        
+        .add input {
+            width: 140px;
+            height: 140px;
+            opacity: 0;
+        }
+        
+        .pic img {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .close {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            background: url("img/upimg_x.png");
+        }
+    </style>
+
+    <script src="js/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="wrap">
+        <p>您还可以上传<b id="sub">2</b>张,已经上传<span id="r">1</span>张</p>
+    </div>
+    <ul class="pic">
+        <!-- <li><img src=""><span class="close"></span></li> -->
+        <li class='add'><input type="file" id="file"></li>
+    </ul>
+    <script src="js/upload.js"></script>
+    <script src="js/alert.js"></script>
+    <script>
+        $.upload({
+            pic: ".pic",
+            r: "#r",
+            sub: "#sub",
+            error: function(txt) {
+                alert(txt)
+            },
+            success: function(url) {
+                //显示到页面
+                $(".pic>li").eq(0).find("img").attr("src", url)
+            }
+        });
+    </script>
+</body>
+
+</html>

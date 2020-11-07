@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="fonts/iconfont.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        document.documentElement.style.fontSize = window.innerWidth / 750 * 100 + "px";
+    </script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/bscroll.min.js"></script>
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+            <a class="act">北京</a>
+            <a>假日旅行</a>
+            <a>北京</a>
+        </header>
+        <section class="main">
+            <div class="scroll">
+                <div class="ban swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="images/QQ图片20180528090930.jpg" alt=""></div>
+                        <div class="swiper-slide"><img src="images/QQ图片20180528090921.jpg" alt=""></div>
+                        <div class="swiper-slide"><img src="images/QQ图片20180528090926.jpg" alt=""></div>
+                        <div class="swiper-slide"><img src="images/QQ图片20180528090915.jpg" alt=""></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+                <div class="lists"></div>
+                <div class="loading">loading...</div>
+            </div>
+        </section>
+        <footer></footer>
+    </div>
+    <div class="city-wrap">
+        <header>
+            <a class="fanhui"><i class="icon iconfont icon-chevron-thin-left"></i></a>
+            <a href="">选择城市</a>
+            <a><i class="icon iconfont icon-chevron-thin-left"></i></a>
+        </header>
+        <nav class="label">
+            <label>
+                <input type="text" placeholder="输入城市名">
+            </label>
+            <h3><a href="">当前城市</a></h3>
+        </nav>
+        <section class="cection">
+            <div class="city-con">
+                <div>
+                    <div class="dw">正在定位中...</div>
+
+                </div>
+            </div>
+            <div class="city-bar">
+
+            </div>
+        </section>
+    </div>
+    <div class="mark"></div>
+</body>
+<script>
+    var local = window.localStorage;
+    var check = local.getItem("mark");
+    if (!check) {
+        $(".mark").show();
+    };
+    local.setItem("mark", new Date() * 1);
+
+    $(".act").on("click", function() {
+        $(".city-wrap").css("transform", "translateY(0)");
+    });
+    $(".fanhui").on("click", function() {
+        $(".city-wrap").css("transform", "translateY(-100%)");
+    });
+
+    var cityScroll = new BScroll(".city-con");
+
+    $(".city-bar").on("click", "span", function() {
+        var ind = $(this).index();
+        var h3 = $(".city-con h3").eq(ind)[0];
+        cityScroll.scrollToElement(h3, 500, 0, 0);
+    });
+
+    $.ajax({
+        url: "city.json",
+        success: function(data) {
+            init(data);
+        }
+    });
+
+
+
+    new Swiper(".ban", {
+        pagination: {
+            el: ".swiper-pagination"
+        }
+    });
+
+    var myScroll = new BScroll(".main", {
+        click: true,
+        probeType: 2
+    });
+    var a = 1,
+        b = 10;
+    $.ajax({
+        data: {
+            a: a,
+            b: b
+        },
+        url: 'data.json',
+        success: function(data) {
+            setHTML(data);
+        }
+    });
+    var load = $(".loading");
+    myScroll.on("scroll", function() {
+        if (this.y < this.maxScrollY - "50") {
+            load.html("松开释放");
+        } else if (this.y < this.maxScrollY - "20") {
+            load.html("loading...");
+        }
+    });
+    myScroll.on("scrollEnd", function() {
+        load.html("loading...");
+    });
+
+    myScroll.on("touchEnd", function() {
+        if (load.html() == "松开释放") {
+            a++;
+            $.ajax({
+                data: {
+                    a: a,
+                    b: b
+                },
+                url: 'data.json',
+                success: function(data) {
+                    setHTML(data);
+                }
+            });
+        }
+    })
+
+    function init(rs) {
+        var khtml = "";
+        var vhtml = "";
+        $.each(rs, function(key, val) {
+            khtml += "<span>" + key + "</span>";
+            vhtml += "<h3>" + key + "</h3><ul>";
+            var n = val.match(/[\u4e00-\u9fa5]+/g);
+            n.map(function(m) {
+                vhtml += m === "北京" ? "<li class='active'>" + m + "</li>" : "<li>" + m + "</li>";
+            });
+            vhtml += "</ul>";
+        });
+        $(".city-con>div").append(vhtml);
+        $(".city-bar").append(khtml);
+    }
+
+    function setHTML(data) {
+        var html = "";
+        $.each(data.data, function(i, v) {
+            html += `<a href="./page/page.html?name=${escape(v.tit)}&num=${v.fen}">
+                        <dl>
+                            <dt><img src="images/${v.img}" alt=""></dt>
+                            <dd>
+                                <h1>${v.tit}</h1>
+                                <h2>
+                                    <span>${v.time}</span>
+                                    <span><b>${v.price}</b>起</span>
+                                </h2>
+                                <h3><span>${v.fen}分</span><span>${v.xing}</span><span>${v.car}</span></h3>
+                                <h4>
+                                    <p><i class="icon iconfont icon-dingwei1"></i>${v.location}</p>
+                                    <p>${v.distance}</p>
+                                </h4>
+                            </dd>
+                            <dd>
+                                <i class="icon iconfont icon-angle-right"></i>
+                            </dd>
+                        </dl>
+                    </a>`;
+        });
+        $(".lists").append(html);
+        myScroll.refresh();
+    }
+</script>
+
+</html>

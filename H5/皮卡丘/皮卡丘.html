@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .wrap {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .box {
+            width: 500px;
+            height: 375px;
+            border: 1px solid #000;
+            margin: 100px auto;
+            background: url(皮卡丘.jpg);
+            background-repeat: no-repeat;
+            animation: change 2s infinite steps(8);
+        }
+        
+        @keyframes change {
+            0% {
+                background-position-x: 0;
+            }
+            100% {
+                background-position-x: -4000px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="box"></div>
+        <div class="btns">
+            <button data-key="0.2s">最快</button>
+            <button data-key="0.5s">快</button>
+            <button data-key="1s">慢</button>
+            <button data-key="4s">最慢</button>
+        </div>
+    </div>
+</body>
+<script src="jquery.min.js"></script>
+<script>
+    $(".btns button").on("click", function() {
+        var a = $(this).data("key");
+        console.log(a)
+        $(".box").css({
+            "animation-duration": a
+        })
+    })
+</script>
+
+</html>

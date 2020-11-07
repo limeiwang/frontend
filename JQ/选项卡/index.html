@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .wrap {
+            width: 302px;
+            border: 1px solid #ccc;
+            margin: 20px auto;
+        }
+
+        .menu {
+            height: 30px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .menu li {
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            float: left;
+            text-align: center;
+            border-right: 1px solid #ccc;
+        }
+
+        .menu .active {
+            background: skyblue;
+        }
+
+        .con {
+            height: 100px;
+            overflow: hidden;
+        }
+
+        .con section {
+            height: 100px;
+            background: pink;
+        }
+
+        .con section:nth-child(2) {
+            background: orange;
+        }
+
+        .con section:nth-child(3) {
+            background: green;
+            ;
+        }
+        #card .con,
+        #card section{
+            height:150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap" id="note">
+        <ul class="menu">
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+        <div class="con">
+            <div class="container">
+                <section>内容1</section>
+                <section>内容2</section>
+                <section>内容3</section>
+            </div>
+        </div>
+    </div>
+    <div class="wrap wrap2" id="card">
+        <ul class="menu">
+            <li class="active">2-1</li>
+            <li>2-2</li>
+            <li>2-3</li>
+        </ul>
+        <div class="con">
+            <div class="container">
+                <section>内容1</section>
+                <section>内容2</section>
+                <section>内容3</section>
+            </div>
+        </div>
+    </div>
+    <div class="wrap" id="produce">
+        <ul class="menu">
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+        <div class="con">
+            <div class="container">
+                <section>内容1</section>
+                <section>内容2</section>
+                <section>内容3</section>
+            </div>
+        </div>
+    </div>
+    <script src="teb.js"></script>
+    <script>
+        new Tab({
+            ele: "note",//元素ID名
+            type: "click"
+        });
+        new Tab({
+            ele: "card",
+            type: "mouseover"
+        });
+        new Tab({
+            ele: "produce"
+        })
+    </script>
+</body>
+</html>

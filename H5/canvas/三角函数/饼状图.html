@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas class="canvas" width="500" height="500"></canvas>
+    <script src="./data.js"></script>
+    <script>
+        var canvas = document.querySelector('.canvas');
+        var ctx = canvas.getContext('2d');
+        var deg = Math.PI / 180;
+        //移动画布原点
+        ctx.translate(250, 250);
+        //总和
+        var sum = data.map(function(v, i) {
+            return v.value;
+        }).reduce(function(prev, next) {
+            return prev + next;
+        });
+        //起始角度
+        var start = -90;
+        //图例
+        var rectOps = {
+            width: 25,
+            height: 15,
+            offset: 10,
+            x: -240,
+            y: -240
+        };
+        //线相交的类型
+        ctx.lineJoin = "round";
+        data.map(function(v, i) {
+            //每一个扇形的角度
+            var radius = v.value / sum * 360;
+            var end = start + radius;
+            //中间角度
+            var centerRadius = start + radius / 2;
+            var startx = Math.cos(centerRadius * deg) * 100;
+            var starty = Math.sin(centerRadius * deg) * 100;
+            //圆
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.arc(0, 0, 100, start * deg, end * deg);
+            ctx.fillStyle = v.color;
+            ctx.fill();
+            //方块
+            ctx.beginPath();
+            ctx.textAlign = "left";
+            ctx.textBaseline = 'top';
+            ctx.font = "14px normal"
+            ctx.rect(rectOps.x, rectOps.y + i * (rectOps.height + rectOps.offset), rectOps.width, rectOps.height);
+            ctx.fillText(v.name, rectOps.x + 35, rectOps.y + i * (rectOps.height + rectOps.offset) - 2);
+            ctx.lineWidth = 5;
+            ctx.strokeStyle = v.color;
+            ctx.fill();
+            ctx.stroke();
+            //画线
+            ctx.beginPath();
+            ctx.moveTo(startx, starty);
+            //左上
+            if (startx > 0 && starty < 0) {
+                ctx.lineTo(startx + 15, starty - 15);
+                ctx.lineTo(startx + 35, starty - 15);
+                ctx.textAlign = "left";
+                ctx.textBaseline = "middle";
+                ctx.fillText(v.name, startx + 40, starty - 15)
+                    //左下
+            } else if (startx > 0 && starty > 0) {
+                ctx.lineTo(startx + 15, starty + 15);
+                ctx.lineTo(startx + 35, starty + 15);
+                ctx.textAlign = "left";
+                ctx.textBaseline = "middle";
+                ctx.fillText(v.name, startx + 40, starty + 15)
+                    //右下
+            } else if (startx < 0 && starty > 0) {
+                ctx.lineTo(startx - 15, starty + 15);
+                ctx.lineTo(startx - 35, starty + 15);
+                ctx.textAlign = "right";
+                ctx.textBaseline = "middle";
+                ctx.fillText(v.name, startx - 40, starty + 15)
+                    //右上
+            } else if (startx < 0 && starty < 0) {
+                ctx.lineTo(startx - 15, starty - 15);
+                ctx.lineTo(startx - 35, starty - 15);
+                ctx.textAlign = "right";
+                ctx.textBaseline = "middle";
+                ctx.fillText(v.name, startx - 40, starty - 15)
+            }
+            ctx.lineWidth = 1;
+            ctx.stroke();
+            start = end;
+        });
+        //白色圆
+        ctx.beginPath();
+        ctx.arc(0, 0, 80, 0, 360 * deg);
+        ctx.fillStyle = "#fff";
+        ctx.fill();
+    </script>
+</body>
+
+</html>

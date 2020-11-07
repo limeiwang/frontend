@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none
+        }
+        div{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+    <script>
+        function ran(n,m) {
+            return Math.floor(Math.random()*(m-n)+n);
+        }
+        window.onload=function () {
+            var oDiv=document.querySelector('div');
+
+            document.onmousemove=function (ev) {
+                var oEvent=ev || event;
+
+                oDiv.style.background='rgb('+ran(0,256)+','+ran(0,256)+','+ran(0,256)+')';
+                oDiv.style.left=oEvent.clientX-oDiv.offsetWidth/2+'px';
+                oDiv.style.top=oEvent.clientY-oDiv.offsetHeight/2+'px';
+            };
+        };
+    </script>
+</head>
+<body>
+    <div></div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

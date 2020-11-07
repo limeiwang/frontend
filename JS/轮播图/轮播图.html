@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style:none;
+        }
+        #box{
+            width:800px;
+            height:450px;
+            margin:50px auto;
+            overflow:hidden;
+            position:relative;
+        }
+        ul{
+            width:4000px;
+            position:absolute;
+            left:0;
+            right:0;
+        }
+        ul li{
+            width:800px;
+            height:450px;
+            float: left;
+        }
+        img{
+            width:800px;
+            height:450px;
+        }
+        ol{
+            position:absolute;
+            right:20px;
+            bottom:20px;
+        }
+        ol li{
+            width: 15px;
+            height: 15px;
+            margin:10px;
+            background:limegreen;
+            float: left;
+            border-radius:10px;
+            text-align:center;
+            line-height:50px;
+            font-size:20px;
+            color:#fff;
+            cursor:pointer;
+        }
+        .active{
+            background:blue;
+        }
+        span{
+            width:70px;
+            height:40px;
+            background:rgba(0, 0, 0, 0.5);
+            position:absolute;
+            top:50%;
+            margin-top:-20px;
+            color:#fff;
+            text-align:center;
+            line-height:40px;
+            cursor:pointer;
+        }
+        .left{
+            left:10px;
+        }
+        .right{
+            right:10px;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var oUl = document.getElementsByTagName("ul")[0];
+            var aLi = oUl.children;
+            var oOl = document.getElementsByTagName("ol")[0];
+            var aoOl = oOl.children;
+            var obox = document.getElementById("box");
+            var oSpan = document.getElementsByTagName("span");
+            var timer = null;
+            var n = 0;
+
+            autoPlay();
+            obox.onmouseover = function(){
+                clearInterval(timer);
+            }
+            obox.onmouseout = function(){
+                autoPlay();
+            }
+
+            function autoPlay(){
+                timer = setInterval(function(){
+                    n++;
+                    if(n>aLi.length-1){
+                        n=0;
+                    }
+                    for(var i=0;i<aoOl.length;i++){
+                        aoOl[i].className = "";
+                    }
+                    oUl.style.left = -n*800+"px";
+                    aoOl[n].className = "active";
+                },1000);
+            }
+
+            for(var i=0;i<aoOl.length;i++){
+                aoOl[i].index = i;
+                aoOl[i].onclick = function(){
+                    n = this.index;
+                    for(var i=0;i<aoOl.length;i++){
+                        aoOl[i].className = "";
+                    }
+                    oUl.style.left = -this.index*800+"px";
+                    this.className = "active";
+                }
+            }
+
+            oSpan[1].onclick = function(){
+                n++;
+                if(n>aoOl.length-1){
+                    n=0;
+                }
+                for(var i=0;i<aoOl.length;i++){
+                    aoOl[i].className = "";
+                }
+                oUl.style.left = -n*800+"px";
+                aoOl[n].className = "active";
+            }
+            oSpan[0].onclick = function(){
+                n--;
+                if(n<0){
+                    n=aoOl.length-1;
+                }
+                for(var i=0;i<aoOl.length;i++){
+                    aoOl[i].className = "";
+                }
+                oUl.style.left = -n*800+"px";
+                aoOl[n].className = "active";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="box">
+        <ul>
+            <li><img src="images/1.jpg" alt=""></li>
+            <li><img src="images/2.jpg" alt=""></li>
+            <li><img src="images/3.jpg" alt=""></li>
+            <li><img src="images/4.jpg" alt=""></li>
+            <li><img src="images/5.jpg" alt=""></li>
+        </ul>
+        <ol>
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ol>
+        <span class="left">上一张</span>
+        <span class="right">下一张</span>
+    </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas class="can" width="400" height="100"></canvas>
+    <canvas class="canvas" width="500" height="500"></canvas>
+</body>
+<script>
+    //线性渐变
+    var can = document.querySelector(".can");
+    var ctx = can.getContext('2d');
+    var color = ctx.createLinearGradient(10, 60, 310, 60);
+    color.addColorStop(0, "blue");
+    color.addColorStop(1, "green");
+    ctx.fillStyle = color;
+    ctx.fillRect(10, 10, 300, 50);
+    //圆性渐变
+    var canvas = document.querySelector(".canvas");
+    var ctx = canvas.getContext('2d');
+    var deg = Math.PI / 180;
+    var color = ctx.createRadialGradient(255, 255, 100, 255, 255, 150);
+
+    color.addColorStop(0, "blue");
+    color.addColorStop(1, "skyblue");
+    ctx.fillStyle = color;
+    ctx.fillRect(0, 0, 500, 500)
+</script>
+
+</html>

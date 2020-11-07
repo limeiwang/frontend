@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>联动菜单</title>
+</head>
+<body>
+    一级省：<select id="province">
+        <option value="">省份</option>
+    </select>
+    二级市：<select id="city">
+        <option value="">市</option>
+    </select>
+    三级县：<select id="district">
+        <option value="">区</option>
+    </select>
+    <script src="js/city.min.js"></script>
+    <script src="js/city.js"></script>
+    <script>
+        new City({
+            data: obj.citylist,
+            pro: "province",
+            city: "city",
+            district: "district"
+        });
+    </script>
+</body>
+</html>

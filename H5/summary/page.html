@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>李美旺</title>
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="fonts/iconfont.css">
+    <link rel="stylesheet" href="css/page.css">
+    <script>
+        document.documentElement.style.fontSize = window.innerWidth / 750 * 100 + "px";
+    </script>
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+            <a href="">
+                <i class="icon iconfont icon-angle-left"></i>
+            </a>
+            <a href="">登陆</a>
+            <a href="">
+                <i class="icon iconfont icon-angle-left"></i>
+            </a>
+        </header>
+        <section>
+            <div class="ban">
+                <img src="img/assets/Page 1@2x.png" alt="">
+            </div>
+            <aside class="pag">
+                <div>
+                    <img src="img/assets/验证码icon-2@2x.png" alt="">
+                    <span>密码登陆</span>
+                </div>
+                <div>
+                    <img src="img/assets/手机icon-2@2x.png" alt="">
+                    <span>验证码登陆</span>
+                </div>
+            </aside>
+            <div class="cont">
+                <div><input class="text" type="text" placeholder="请输入手机号"><em class="close"><img src="img/assets/Clear.png" alt=""></em></div>
+                <div><input class="pwd" type="password" id="pwd" placeholder="请输入密码"><span class="close"><img src="img/assets/Clear.png" alt=""></span><em class="look"><img src="img/assets/Group@2x.png" alt=""></em></div>
+                <div><button class="btn">登录</button></div>
+                <div class="buut">
+                    <a href="newpwd.html">忘记密码</a>
+                    <a href="">立即注册</a>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script>
+    var s = false;
+    $(".text").on("input", function() {
+        if ($(this).val() === "") {
+            $(this).next().hide();
+        } else {
+            $(this).next().show();
+        }
+    });
+    $(".pwd").on("input", function() {
+        if ($(this).val() === "") {
+            $(this).next().hide();
+            $(this).next().next().hide();
+            $(".look").hide();
+        } else {
+            $(this).next().show();
+            $(this).next().next().show();
+        }
+    });
+    $(".close").on("click", function() {
+        $(this).prev().val("");
+        $(this).hide();
+        console.log(2)
+    });
+    var flag = true;
+    $(".look").on("click", function() {
+        if (flag) {
+            $(".pwd").attr("type", "text");
+            $(this).find("img").attr("src", "img/assets/闭-眼睛@2x.png");
+            flag = false;
+        } else {
+            $(".pwd").attr("type", "password");
+            $(this).find("img").attr("src", "img/assets/Group@2x.png");
+            flag = true;
+        }
+    });
+
+    $.ajax({
+        url: "login.json",
+        success: function(data) {
+            yanzheng(data);
+        }
+    });
+
+
+    function yanzheng(rs) {
+        var name = [];
+        var pwd = [];
+        $.each(rs, function(i, v) {
+            name.push(v.phone);
+            pwd.push(v.pwd);
+        });
+        $(".btn").on("click", function() {
+            // var reg = //
+            if ($(".text").val() && $(".pwd").val()) {
+                var n = $(".text").val();
+                var m = $(".pwd").val();
+                console.log($.inArray("13810703596", name))
+                if ($.inArray(String(n), name) == -1) {
+                    alert("您的手机号不正确");
+                } else {
+                    if ($(".pwd").val().length == 6) {
+                        console.log(String(m), pwd)
+                        if ($.inArray(String(m), pwd) == -1) {
+                            alert("您的密码号不正确");
+                        } else {
+                            window.location.href = "index.html";
+                        }
+                    } else {
+                        alert("请填写六位数密码");
+                    }
+                }
+
+            } else {
+                alert("请填写用户名或密码");
+            }
+        });
+    }
+</script>
+
+</html>

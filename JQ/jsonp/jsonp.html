@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .keyword {
+            height: 40px;
+        }
+
+        .list,
+        .keyword {
+            width: 300px;
+        }
+
+        .list {
+            border: 1px solid orange;
+            display: none;
+        }
+
+        .list li {
+            height: 32px;
+            line-height: 32px;
+        }
+
+        .list li:hover {
+            background: orange;
+        }
+    </style>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jsonp.js"></script>
+</head>
+
+<body>
+    <h2>百度搜索查询接口</h2>
+    <input type="text" class="keyword">
+    <ul class="list">
+    </ul>
+</body>
+
+</html>

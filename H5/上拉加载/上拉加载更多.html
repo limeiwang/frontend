@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/bscroll.min.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            box-sizing: border-box;
+        }
+        
+        html,
+        body,
+        .wrap {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .wrap {
+            overflow: hidden;
+        }
+        
+        .list {
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
+        
+        .list li {
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            border-bottom: 1px solid #ccc;
+        }
+        
+        .list li.loading {
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            transition: 1s linear;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <ul class="list">
+            <li class="loading">上拉加载更多...</li>
+        </ul>
+    </div>
+</body>
+<script>
+    var p = 1;
+
+
+    var scroll = new BScroll(".wrap", {
+        probeType: 2
+    });
+    setHtml();
+
+    function setHtml() {
+        var data = setData();
+        data.map(function(v, i) {
+            $("<li>" + v.title + "</li>").appendTo($(".list"))
+        });
+        scroll.refresh();
+    }
+
+    scroll.on("scroll", function() {
+        if (this.y < this.maxScrollY - 50) {
+            $(".loading").html("松开释放更多")
+        } else if (this.y < this.maxScrollY - 20) {
+            $(".loading").html("上拉加载更多...")
+        }
+    });
+
+    scroll.on("scrollEnd", function() {
+        $(".loading").html("上拉加载更多...")
+    });
+    scroll.on("touchEnd", function() {
+        if ($(".loading").html() === "松开释放更多") {
+            p++;
+            setHtml();
+        }
+    });
+
+    function setData() {
+        var data = [];
+        for (var i = 1; i <= 30; i++) {
+            data.push({
+                "title": "今日头条" + i + "这是第" + p + "页"
+            });
+        }
+        return data;
+    }
+</script>
+
+</html>

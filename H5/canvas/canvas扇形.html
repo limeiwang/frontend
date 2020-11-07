@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas class="can" width="400" height="400" style="border:1px solid #000;"></canvas>
+</body>
+<script>
+    var ctx = document.querySelector(".can").getContext("2d");
+    var deg = Math.PI / 180;
+    // ctx.moveTo(200, 200);
+    var init = 0;
+
+    function move() {
+        init++;
+        if (init < 350) {
+            requestAnimationFrame(move);
+        }
+        ctx.clearRect(0, 0, 400, 400);
+        ctx.beginPath();
+        ctx.arc(200, 200, 100, 0 * deg, init * deg, false);
+        ctx.lineWidth = "20";
+        ctx.stroke();
+        ctx.font = "20px normal";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(parseInt(init / 360 * 100) + "%", 200, 200);
+    }
+    move();
+</script>
+
+</html>

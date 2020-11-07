@@ -1,0 +1,71 @@
+@import "common.scss";
+@import "_mixin.scss";
+* {
+    @include sizing;
+    list-style: none;
+}
+
+html,
+body,
+.from {
+    width: 100%;
+    height: 100%;
+}
+
+.from {
+    display: flex;
+    flex-direction: column;
+    padding: pxTorem(100px) pxTorem(20px) 0;
+    .form-input-wrapper {
+        width: 100%;
+        height: pxTorem(40px);
+        border: 1px solid #ccc;
+        padding: 0 pxTorem(15px);
+        display: flex;
+        input {
+            flex: 1;
+        }
+        em {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            i.icon {
+                font-size: pxTorem(14px);
+                color: #ccc;
+                margin-left: pxTorem(8px);
+            }
+            i.icon-weibangding {
+                display: none;
+            }
+        }
+    }
+    .remember {
+        width: 100%;
+        height: pxTorem(30px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        #check {
+            width: pxTorem(14px);
+            height: pxTorem(14px);
+            margin-right: pxTorem(5px);
+        }
+    }
+    .form-item-btn {
+        width: 100%;
+        height: pxTorem(40px);
+        background: #3c76ff;
+        text-align: center;
+        line-height: pxTorem(40px);
+        margin: pxTorem(20px) 0;
+        button {
+            border: none;
+            background: none;
+            outline: none;
+            font-size: pxTorem(16px);
+            &.opt {
+                color: #fff;
+            }
+        }
+    }
+}

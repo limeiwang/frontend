@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="fonts/iconfont.css">
+    <script src="js/flexible.js"></script>
+    <script src="js/zepto.js"></script>
+</head>
+
+<body>
+    <form class="from">
+        <label class="form-input-wrapper"><input class="inp user" type="text" placeholder="手机号/邮箱/用户名"><em><i id="bx1" class="icon iconfont icon-weibangding"></i></em></label>
+        <label class="form-input-wrapper"><input class="inp psd" type="password" placeholder="密码"><em><i id="bx2" class="icon iconfont icon-weibangding"></i><i class="icon iconfont icon-eyeoclose"></i></em></label>
+        <div class="remember"><span></span><span><input type="checkbox" id="check">记住密码</span></div>
+        <label class="form-item-btn"><button type="button" class="btn">登陆</button></label>
+    </form>
+</body>
+<script>
+    var lage = true; //bx开关
+    var btnyz = false; //按钮开关
+    opt();
+    //bx
+    $(".icon-eyeoclose").on("click", function() {
+        if (lage) {
+            $(this).removeClass("icon-eyeoclose");
+            $(this).addClass("icon-eyeopen");
+            $(".psd").attr("type", "text");
+            lage = false;
+        } else {
+            $(this).removeClass("icon-eyeopen");
+            $(this).addClass("icon-eyeoclose");
+            $(".psd").attr("type", "password");
+            lage = true;
+        }
+
+    });
+
+    //文本清空
+    $(".user").on("input", function() {
+        $("#bx1").show();
+        opt();
+        btnyz = true;
+        $("#bx1").on("click", function() {
+            $(".user").val("");
+            $(this).hide();
+            opt();
+        });
+    });
+    $(".psd").on("input", function() {
+        $("#bx2").show();
+        opt();
+        btnyz = true;
+        $("#bx2").on("click", function() {
+            $(".psd").val("");
+            $(this).hide();
+            opt();
+        });
+    });
+
+    function opt() {
+        if ($(".user").val() != "" && $(".psd").val() != "") {
+            $(".btn").addClass("opt");
+        } else {
+            $(".btn").removeClass("opt")
+        }
+    }
+
+
+    var local = window.localStorage;
+    var person = JSON.parse(local.getItem("user")) || {
+        name: "",
+        pwd: "",
+        check: false
+    }
+    $(".user").val(person.name);
+    $(".psd").val(person.pwd);
+    $("#check").prop("checked", person.check);
+    if (person.check) {
+        $(".btn").addClass("opt");
+    }
+    //登录
+    $(".btn").on("tap", function() {
+
+        if (!$(this).hasClass("opt")) {
+            return false;
+        }
+        var username = $.trim($(".user").val()),
+            pwd = $.trim($(".psd").val());
+        if ($("#check").prop("checked")) {
+            //存到localStorage
+            person.name = username;
+            person.pwd = pwd;
+            person.check = true;
+            local.setItem("user", JSON.stringify(person));
+        } else {
+            alert("登录成功");
+        }
+
+    })
+
+
+
+
+
+
+
+    // var local = localStorage;
+    // window.onload = function() {
+    //     var Id = JSON.parse(local.getItem("userName")) || null;
+    //     if (Id != null) //如果缓存中有数据，则加载出来
+    //     {
+    //         $(".user").val(Id.uval);
+    //         $(".psd").val(Id.pval);
+    //         $("#check").prop("checked", true);
+    //         $(".btn").addClass("opt");
+    //     } else {
+    //         $("#check").prop("checked", false);
+    //         $(".btn").removeClass("opt");
+    //     }
+    // }
+
+
+    // $("#check").on("click", function() {
+    //     var check = $("#check").prop("checked");
+
+    //     if (check) {
+    //         if ($(".user").val() != "" && $(".psd").val() != "") {
+    //             //本地储存
+    //             var uval = $(".user").val(),
+    //                 pval = $(".psd").val();
+    //             var obj = {};
+    //             obj.uval = uval;
+    //             obj.pval = pval;
+    //             local.userName = JSON.stringify(obj);
+    //             $(".btn").addClass("opt");
+    //         } else {
+    //             local.clear();
+    //         }
+    //     } else {
+
+    //         return false;
+    //     }
+    // });
+
+
+
+
+
+
+    // $(".inp").each(function() {
+    //     var val = $(this).val().trim();
+    //     var ble = true;
+    //     if (val == "" || val == null) {
+    //         ble = true;
+    //     } else {
+    //         $(".btn").addClass("opt");
+    //     }
+    // });
+    // var ble = true;
+    // $(".user").on("input", function() {
+    //     $(".psd").on("input", function() {
+    //         var val = $.trim($(this).val());
+    //         if (val == "" || val == null) {
+    //             $(".btn").removeClass("opt");
+    //         } else {
+    //             ble = true;
+    //             $(".btn").addClass("opt");
+    //             local();
+    //         }
+    //     });
+    // });
+
+    // function local() {
+    //     if (ble) {
+    //         $(".opt").on("click", function() {
+    //             console.log(1)
+    //         });
+    //     }
+    // }
+</script>
+
+</html>
